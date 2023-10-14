@@ -1,0 +1,36 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  message* msg;
+}
+on message SwitchState{
+  @MyNameSpace::svLight = this.sSwitch;
+}
+
+
+on message 0xA-0x200{
+  write("%d is received", this.id);
+}
+
+on key 'a'{
+  int i;
+ message* msg;
+  msg.can = 1;
+  msg.id = 0x200;
+  msg.dlc = 8;
+  for( i = 0;i<7;i++){
+    msg.byte(i) = i+1;
+  }
+  output(msg);
+  write("output msg");
+}
+
+on signal sSwitch{
+  write("sSwitch changed");
+  
+}

@@ -1,0 +1,18 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on sysvar MyNameSpace::svSwitch{
+  message SwitchState msg;
+  msg.sSwitch = @this;
+  output(msg);
+  write("%d is switch", @this);
+}
+
